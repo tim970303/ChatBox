@@ -13,7 +13,7 @@ namespace chatBoxClient
         {
             InitializeComponent();
         }
-        Socket SckSPort;
+        Socket SckSPort;   //©w¸qsocket
 
         string RmIp;
 

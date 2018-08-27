@@ -16,7 +16,7 @@ namespace chatBoxClient
         {
             InitializeComponent();
         }
-        private string IP;
+        private string IP;	//©w¸q·sIP
         private bool rem = false;
         private void button1_Click(object sender, EventArgs e)
         {
