@@ -53,6 +53,7 @@ namespace chatBoxClient
                     textBox1.AppendText(Encoding.UTF8.GetString(clientData));
                     button1.Enabled = true;
                     button2.Enabled = false;
+                    button3.Enabled = false;
                     textBox2.Enabled = true;
                 }
             }
@@ -105,7 +106,10 @@ namespace chatBoxClient
                 SckSPortLocal.Connect(new IPEndPoint(IPAddress.Parse(RmIp), SPort));
                 SckSWaitAccept(true);
             }
-            catch { MessageBox.Show("connect failure", "Connect Error!", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            catch
+            {
+                MessageBox.Show("connect failure", "Connect Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void SckSWaitAccept(bool s)   //等待連線
@@ -165,6 +169,7 @@ namespace chatBoxClient
             {
                 button1.Enabled = false;
                 button2.Enabled = true;
+                button3.Enabled = true;
                 textBox2.Enabled = false;
             }
         }

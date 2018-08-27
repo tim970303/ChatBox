@@ -131,7 +131,7 @@ namespace chatBoxHome
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            if (textBox1.Text.EndsWith("//Client Disconnect//\r\n"))    //用戶端斷線
+            if (textBox1.Text.Contains("//Client Disconnect//"))    //用戶端斷線
             {
                 MessageBox.Show("Client Disconnect\r\nPlease restart the application","Connect Error!",MessageBoxButtons.OK,MessageBoxIcon.Error);
                 this.Close();
