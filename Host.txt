@@ -14,7 +14,7 @@ namespace chatBoxHome
             InitializeComponent();
         }
 
-        Socket SckSs;
+        Socket SckSs;   //©w¸qsocket
         string LocalIP;
         int SPort = 20282;
         int RDataLen;
