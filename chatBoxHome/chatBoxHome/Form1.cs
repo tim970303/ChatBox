@@ -17,53 +17,65 @@ namespace chatBoxHome
         Socket SckSs;   //定義socket
         string LocalIP; //定義本地IP
         int SPort = 20282;  //定義本地Port
-        int RDataLen;
-        string S;
-        String HostName = Dns.GetHostName();
+        String HostName = Dns.GetHostName();    //取得本地主機名稱
+
         private void Form1_Load(object sender, EventArgs e)
         {
-            IPHostEntry iphostentry = Dns.GetHostEntry(HostName);
-            foreach (IPAddress ipaddress in iphostentry.AddressList)
+            IPHostEntry iphostentry = Dns.GetHostEntry(HostName);   //取得本地IP
+            foreach (IPAddress ipaddress in iphostentry.AddressList)    //過濾非本地IP位址
             {
                 if (ipaddress.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork && ipaddress.ToString().StartsWith("192"))
                 {
                     LocalIP = ipaddress.ToString();
                 }
             }
+
             textBox1.Text += "Server_IP : " + LocalIP + "\r\n";
             MaximizeBox = false;
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Listen();
         }
 
-        private void SckSWaitAccept()
+        private void Listen()   //開始監聽
         {
-            Thread SckSAcceptTd = new Thread(SckSAcceptProc);
-            SckSAcceptTd.Start();
-            SckSAcceptTd.IsBackground = true;
+            SckSs = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);//設定socket
+            SckSs.Bind(new IPEndPoint(IPAddress.Parse(LocalIP), SPort));//綁定IP,Porrt
+            SckSs.Listen(1);
+            SckSWaitAccept(true);
+        }
+
+        private void SckSWaitAccept(bool s)   //等待連線
+        {
+            Thread SckSAcceptTd = new Thread(SckSAcceptProc);   //開始新執行續 避免程式當住
+            if (s)
+            {
+                SckSAcceptTd.Start();
+                SckSAcceptTd.IsBackground = true;
+            }
+            else
+            {
+                SckSAcceptTd.Abort();
+            }
         }
 
         private void SckSAcceptProc()
         {
             try
             {
-                SckSs = SckSs.Accept();
+                SckSs = SckSs.Accept(); //成功連接
                 textBox1.AppendText("Connect!!\r\n");
+
                 button1.Enabled = true;
                 button2.Enabled = false;
                 textBox2.Enabled = true;
-                send(true,"");
-                long IntAcceptData;
+                send("first");//喚醒
 
-                while (true)
+                while (true)  
 
                 {
-                    byte[] clientData = new byte[3000];
-                    IntAcceptData = SckSs.Receive(clientData);
-                    S = Encoding.UTF8.GetString(clientData);
-                    string check = textBox1.Text;
-                    textBox1.AppendText(S);
-
+                    byte[] clientData = new byte[3000];//設定緩衝區大小
+                    SckSs.Receive(clientData);  //接收資料放在clientData
+                    textBox1.AppendText(Encoding.UTF8.GetString(clientData));//轉換資料
                 }
             }
             catch
@@ -72,57 +84,44 @@ namespace chatBoxHome
 
         }
 
-        private void Listen()
-        {
-            SckSs = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            SckSs.Bind(new IPEndPoint(IPAddress.Parse(LocalIP), SPort));
-            SckSs.Listen(10);
-            SckSWaitAccept();
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
-            send(false,"");
+            send("");
         }
 
-        private void send(bool first,string s)
+        private void send(string s)
         {
-            RDataLen = Encoding.UTF8.GetBytes(textBox2.Text + "\r\n").Length;
-            if (first == true)
-            {
-                SckSs.Send(Encoding.UTF8.GetBytes("Connect successful\r\n"));
-                return;
-            }
-            if (s == "disconnect")
-            {
-                try
-                {
-                    SckSs.Send(Encoding.UTF8.GetBytes("//Server disconnect//\r\n"));
-                }
-                catch { }
-                return;
-            }
-            if (SckSs.Connected == true)
 
+            switch (s)
             {
-                if (textBox2.Text != "")
-                {
+                case "first":
+                    SckSs.Send(Encoding.UTF8.GetBytes("//Connect successful//\r\n"));
+                    return;
+                case "disconnect":
                     try
                     {
-                        string SendS = "Server : " + textBox2.Text + "\r\n";
-                        SckSs.Send(Encoding.UTF8.GetBytes(SendS));
-                        textBox1.AppendText(textBox2.Text + "\r\n");
-                        textBox2.Text = "";
+                        SckSs.Send(Encoding.UTF8.GetBytes("//Server disconnect//\r\n"));
                     }
-
-                    catch
+                    catch { }
+                    break;
+                default:
+                    if (SckSs.Connected == true)
                     {
+                        if (textBox2.Text != "")
+                        {
+                            try
+                            {
+                                string SendS = "Server : " + textBox2.Text + "\r\n";
+                                SckSs.Send(Encoding.UTF8.GetBytes(SendS));
+                                textBox1.AppendText(textBox2.Text + "\r\n");
+                                textBox2.Text = "";
+                            }
+                            catch
+                            {
+                            }
+                        }
                     }
-                }
-            }
-            else
-            {
-
+                    break;
             }
         }
 
@@ -132,7 +131,7 @@ namespace chatBoxHome
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            if (textBox1.Text.Contains("//Client Disconnect//"))
+            if (textBox1.Text.EndsWith("//Client Disconnect//\r\n"))    //用戶端斷線
             {
                 MessageBox.Show("Client Disconnect\r\nPlease restart the application","Connect Error!",MessageBoxButtons.OK,MessageBoxIcon.Error);
                 this.Close();
@@ -141,10 +140,10 @@ namespace chatBoxHome
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            send(false, "disconnect");
+            send("disconnect"); //伺服端斷線
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)//切換ip
         {
             IPHostEntry iphostentry = Dns.GetHostEntry(HostName);
             foreach (IPAddress ipaddress in iphostentry.AddressList)
@@ -152,6 +151,9 @@ namespace chatBoxHome
                 if (ipaddress.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork && ipaddress.ToString().StartsWith("192") && button2.Text == "Private")
                 {
                     LocalIP = ipaddress.ToString();
+                    SckSs.Close();
+                    SckSWaitAccept(false);
+                    Listen();
                     textBox1.Text += "Server_IP : " + LocalIP + "\r\n";
                     button2.Text = "Public";
                     return;
@@ -159,6 +161,9 @@ namespace chatBoxHome
                 else if (ipaddress.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork && !ipaddress.ToString().StartsWith("192") && button2.Text != "Private")
                 {
                     LocalIP = ipaddress.ToString();
+                    SckSs.Close();
+                    SckSWaitAccept(false);
+                    Listen();
                     textBox1.Text += "Server_IP : " + LocalIP + "\r\n";
                     button2.Text = "Private";
                     return;
@@ -166,9 +171,9 @@ namespace chatBoxHome
             }
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void timer1_Tick(object sender, EventArgs e)//偵錯
         {
-            textBox1.Text += LocalIP + "\r\n";
+            textBox1.Text += SckSs.LocalEndPoint + "\r\n";
         }
     }
 }

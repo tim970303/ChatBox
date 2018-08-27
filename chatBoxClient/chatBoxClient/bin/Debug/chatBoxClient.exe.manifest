@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="chatBoxClient.exe" size="219552">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="chatBoxClient.exe" size="220064">
       <assemblyIdentity name="chatBoxClient" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>3T8udlpqecGh2cnOl8W/sCj85OBmgaSerO9JJqMJpGE=</dsig:DigestValue>
+        <dsig:DigestValue>zg7S/vyvU/+xC6wBBdj50EOVjZLYJ+LTuoYTOMZXQKI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -63,13 +63,13 @@
       <dsig:DigestValue>nUOdvidkJP8OywrVuWE35JQZPmg2Vdts2xLmsIpJBbE=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="chatBoxClient.exe.config" size="1036">
+  <file name="chatBoxClient.exe.config" size="919">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>SEHD7I7iOURR9wRUn9H/mZ6QFuSyr557nm1REZyCwe8=</dsig:DigestValue>
+      <dsig:DigestValue>qSPS13fU16Cyuc0Uql+lKLg++EU+5Af3bPXjozbd0F8=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

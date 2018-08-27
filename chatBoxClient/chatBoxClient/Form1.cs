@@ -13,16 +13,15 @@ namespace chatBoxClient
         {
             InitializeComponent();
         }
-        Socket SckSPort;
 
-        string RmIp;
+        Socket SckSPortLocal;    //定義socket
+        string RmIp;    //定義目標IP
+        int SPort = 20282;  //定義port
 
-        int SPort = 20282;
-
-        int RDataLen;
         private void Form1_Load(object sender, EventArgs e)
         {
-            if (!Properties.Settings.Default.rem)
+            SckSPortLocal = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            if (Properties.Settings.Default.IP == "")//定義目標IP
             {
                 String HostName = Dns.GetHostName();
                 IPHostEntry iphostentry = Dns.GetHostEntry(HostName);
@@ -45,31 +44,23 @@ namespace chatBoxClient
 
         private void SckSReceiveProc()
         {
-
             try
             {
-
-                long IntAcceptData;
                 while (true)
                 {
                     byte[] clientData = new byte[3000];
-
-                    IntAcceptData = SckSPort.Receive(clientData);
-
-                    string S = Encoding.UTF8.GetString(clientData);
-
+                    SckSPortLocal.Receive(clientData);
+                    textBox1.AppendText(Encoding.UTF8.GetString(clientData));
                     button1.Enabled = true;
                     button2.Enabled = false;
                     textBox2.Enabled = true;
-                    textBox1.AppendText(S);
                 }
-
             }
-
             catch
             {
             }
         }
+
         private void button1_Click(object sender, EventArgs e)
         {
             send("");
@@ -77,38 +68,29 @@ namespace chatBoxClient
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-
         }
 
         private void send(string s)
         {
-
-            RDataLen = Encoding.UTF8.GetBytes(textBox2.Text + "\r\n").Length;
-
             if (textBox2.Text != "")
             {
                 try
                 {
                     string SendS = "Guest : " + textBox2.Text + "\r\n";
-                    SckSPort.Send(Encoding.UTF8.GetBytes(SendS));
+                    SckSPortLocal.Send(Encoding.UTF8.GetBytes(SendS));
                     textBox1.AppendText(textBox2.Text + "\r\n");
                     textBox2.Text = "";
                 }
                 catch
                 {
                     MessageBox.Show("server disconnect!", "Connect Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    textBox1.Text = "";
-                    button1.Enabled = false;
-                    button2.Enabled = true;
-                    textBox2.Enabled = false;
-                    textBox2.Text = "";
                 }
             }
             else if (s == "disconnect")
             {
                 try
                 {
-                    SckSPort.Send(Encoding.UTF8.GetBytes("//Client Disconnect//"));
+                    SckSPortLocal.Send(Encoding.UTF8.GetBytes("//Client Disconnect//"));
                     return;
                 }
                 catch { }
@@ -118,25 +100,31 @@ namespace chatBoxClient
         private void button2_Click(object sender, EventArgs e)
         {
             try
-
             {
-
-                SckSPort = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-
-                SckSPort.Connect(new IPEndPoint(IPAddress.Parse(RmIp), SPort));
-
-                Thread SckSReceiveTd = new Thread(SckSReceiveProc);
-                SckSReceiveTd.IsBackground = true;
-                send("");
-                SckSReceiveTd.Start();
-
-
+                SckSPortLocal = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                SckSPortLocal.Connect(new IPEndPoint(IPAddress.Parse(RmIp), SPort));
+                SckSWaitAccept(true);
             }
             catch { MessageBox.Show("connect failure", "Connect Error!", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
+        private void SckSWaitAccept(bool s)   //等待連線
+        {
+            Thread SckSAcceptTd = new Thread(SckSReceiveProc);   //開始新執行續 避免程式當住
+            if (s)
+            {
+                SckSAcceptTd.Start();
+                SckSAcceptTd.IsBackground = true;
+            }
+            else
+            {
+                SckSAcceptTd.Abort();
+            }
+        }
+
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (textBox1.Text.Contains("//Server disconnect//")) { return; }
             send("disconnect");
         }
 
@@ -145,38 +133,40 @@ namespace chatBoxClient
             Form2 IP = new Form2();
             IP.ShowDialog();
             DialogResult dr = IP.DialogResult;
-            if (dr == DialogResult.OK && !IP.getRem())
+            if (!IP.getRem())
             {
                 RmIp = IP.getIP();
+                SckSPortLocal = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                SckSWaitAccept(false);
                 textBox1.Text += "Server_IP : " + RmIp + "\r\n";
-                Properties.Settings.Default.IP = IP.getIP();
-                Properties.Settings.Default.rem = IP.getRem();
-                Properties.Settings.Default.Save();
             }
-            else if(dr == DialogResult.OK && IP.getRem())
+            else if(IP.getRem())
             {
                 RmIp = IP.getIP();
+                SckSPortLocal = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                SckSWaitAccept(false);
                 textBox1.Text += "Server_IP : " + RmIp + "\r\n";
                 Properties.Settings.Default.IP = IP.getIP();
-                Properties.Settings.Default.rem = IP.getRem();
                 Properties.Settings.Default.Save();
             }
-
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             if (textBox1.Text.EndsWith("//Server disconnect//\r\n"))
             {
-                button1.Enabled = false;
-                button2.Enabled = true;
-                textBox2.Enabled = false;
+
             }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            textBox1.Text += RmIp +"\r\n";
+            if (!SckSPortLocal.Connected)
+            {
+                button1.Enabled = false;
+                button2.Enabled = true;
+                textBox2.Enabled = false;
+            }
         }
     }
 }

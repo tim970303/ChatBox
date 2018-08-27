@@ -34,17 +34,5 @@ namespace chatBoxClient.Properties {
                 this["IP"] = value;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool rem {
-            get {
-                return ((bool)(this["rem"]));
-            }
-            set {
-                this["rem"] = value;
-            }
-        }
     }
 }
