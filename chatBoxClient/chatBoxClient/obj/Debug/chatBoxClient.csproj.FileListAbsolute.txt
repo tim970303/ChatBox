@@ -1,0 +1,15 @@
+D:\Tim\C#\專案\chatBoxClient\chatBoxClient\bin\Debug\chatBoxClient.exe.config
+D:\Tim\C#\專案\chatBoxClient\chatBoxClient\bin\Debug\chatBoxClient.exe
+D:\Tim\C#\專案\chatBoxClient\chatBoxClient\bin\Debug\chatBoxClient.pdb
+D:\Tim\C#\專案\chatBoxClient\chatBoxClient\obj\Debug\chatBoxClient.Form1.resources
+D:\Tim\C#\專案\chatBoxClient\chatBoxClient\obj\Debug\chatBoxClient.Properties.Resources.resources
+D:\Tim\C#\專案\chatBoxClient\chatBoxClient\obj\Debug\chatBoxClient.csproj.GenerateResource.Cache
+D:\Tim\C#\專案\chatBoxClient\chatBoxClient\obj\Debug\chatBoxClient.csproj.CoreCompileInputs.cache
+D:\Tim\C#\專案\chatBoxClient\chatBoxClient\obj\Debug\chatBoxClient.exe
+D:\Tim\C#\專案\chatBoxClient\chatBoxClient\obj\Debug\chatBoxClient.pdb
+D:\Tim\C#\專案\chatBoxClient\chatBoxClient\obj\Debug\chatBoxClient.csprojResolveAssemblyReference.cache
+D:\Tim\C#\專案\chatBoxClient\chatBoxClient\obj\Debug\chatBoxClient.Form2.resources
+D:\Tim\C#\專案\chatBoxClient\chatBoxClient\bin\Debug\chatBoxClient.exe.manifest
+D:\Tim\C#\專案\chatBoxClient\chatBoxClient\bin\Debug\chatBoxClient.application
+D:\Tim\C#\專案\chatBoxClient\chatBoxClient\obj\Debug\chatBoxClient.exe.manifest
+D:\Tim\C#\專案\chatBoxClient\chatBoxClient\obj\Debug\chatBoxClient.application

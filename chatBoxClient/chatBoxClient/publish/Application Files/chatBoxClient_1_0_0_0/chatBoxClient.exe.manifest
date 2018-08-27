@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="chatBoxClient.exe" version="1.0.0.0" publicKeyToken="3b7941a525b0fadf" language="neutral" processorArchitecture="msil" type="win32" />
+  <description asmv2:iconFile="74be16979710d4c4e7c6647856088456.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="chatBoxClient" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="chatBoxClient.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          UAC 資訊清單選項
+         如需變更 Windows 使用者帳戶控制層級，
+         請以下列其中一個項目取代 requestedExecutionLevel 節點。
+
+       <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+       <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+       <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+        如需利用回溯相容性的檔案及登錄模擬，
+        請刪除 requestedExecutionLevel 節點。
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="chatBoxClient.exe" size="219552">
+      <assemblyIdentity name="chatBoxClient" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>oSetl8RHrl0Pc9ExDypIavLawgSy34rKPWXHDZdoCLM=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="74be16979710d4c4e7c6647856088456.ico" size="67646">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>nUOdvidkJP8OywrVuWE35JQZPmg2Vdts2xLmsIpJBbE=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="chatBoxClient.exe.config" size="1036">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>SEHD7I7iOURR9wRUn9H/mZ6QFuSyr557nm1REZyCwe8=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=Tim\family" issuerKeyHash="9bed75c488df787ad86671ae46916a934ced60e7" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>lqHBD08Pnnk5C1Lo51WNapFYU5cXF/aK3MYG8uUBsV8=</DigestValue></Reference></SignedInfo><SignatureValue>sKVqXQMl6Y+D3ugP3sTyUT8zyoPUSeioc/jc+WV1qGAOgj3brGK/JG19c72Srpf8clfhIBhU0GIUQUfuUJwaGLw6ATpsqrs5tmi/xUrfn7WJeB5oLPsIJK01TEO+oCKpGSJjWK60xhdT5UWH4T7CUo/rGfmXAlLojDJVZzg67DU=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>xb6NMnnS7MSOuCO4AakUCiLlJZlEK+kJyPiQBu9AidTaRP6bIl3uZXDI03+33CP9YiyXSWji/fofvp3TyeE0qH4h5lB26Gcj4MAEpRPXa4+wna0Ubl2MWCm7adX5heIsqXM4+7XlA9A4gP5ECK+56TlsOs6cKYX8WU3tYWa2J4k=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="5fb101e5f206c6dc8af61717975358916a8d55e7e8520b39799e0f4f0fc1a196" Description="" Url=""><as:assemblyIdentity name="chatBoxClient.exe" version="1.0.0.0" publicKeyToken="3b7941a525b0fadf" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=Tim\family</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>fE/ulWGnvurAkRVZtfnkL8GKG6qvFLLJlPYn8+2oPZY=</DigestValue></Reference></SignedInfo><SignatureValue>VNWMYWr5LWc2xTEUi3jcylpp3NM6SkORB6uvBprSFQGkjBwJ0uCctqaOt4DDwJ7oSmFULXHeZy2JOb6pJ1St8Mn9B/Rw5ntvSDwjCl/s1jv/NRxURIt8t8PNkSkyaLcjOZOcHJujpa4Xa1nljksXy+WY5TDHa2ykIBZ07K8YFVE=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>xb6NMnnS7MSOuCO4AakUCiLlJZlEK+kJyPiQBu9AidTaRP6bIl3uZXDI03+33CP9YiyXSWji/fofvp3TyeE0qH4h5lB26Gcj4MAEpRPXa4+wna0Ubl2MWCm7adX5heIsqXM4+7XlA9A4gP5ECK+56TlsOs6cKYX8WU3tYWa2J4k=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIBwTCCASqgAwIBAgIQYrWZyZhoFYRHXf/3rA4zyjANBgkqhkiG9w0BAQsFADAfMR0wGwYDVQQDHhQAVABpAG0AXABmAGEAbQBpAGwAeTAeFw0xODA4MjcwNzI4MzZaFw0xOTA4MjcxMzI4MzZaMB8xHTAbBgNVBAMeFABUAGkAbQBcAGYAYQBtAGkAbAB5MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDFvo0yedLsxI64I7gBqRQKIuUlmUQr6QnI+JAG70CJ1NpE/psiXe5lcMjTf7fcI/1iLJdJaOL9+h++ndPJ4TSofiHmUHboZyPgwASlE9drj7CdrRRuXYxYKbtp1fmF4iypczj7teUD0DiA/kQIr7npOWw6zpwphfxZTe1hZrYniQIDAQABMA0GCSqGSIb3DQEBCwUAA4GBALiNYFETVTaT6TLkPxWwPYJy24LlhITdo3dC/6zHJT53ROK2ReeFY/JsxAPz13qYh8qNmjO6hgY+zOeIwL98Sag1mu5UgsXLhUHV3WHzbz1XStyloWh4bvHeOu9xS/T6KCC1APthQKN/oGLjOUrP0eGF2e9A0/inHBb4ouCE3YMz</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

@@ -1,0 +1,14 @@
+D:\Tim\C#\專案\chatBoxHome\chatBoxHome\bin\Debug\chatBoxHome.exe.config
+D:\Tim\C#\專案\chatBoxHome\chatBoxHome\bin\Debug\chatBoxHome.exe
+D:\Tim\C#\專案\chatBoxHome\chatBoxHome\bin\Debug\chatBoxHome.pdb
+D:\Tim\C#\專案\chatBoxHome\chatBoxHome\obj\Debug\chatBoxHome.csprojResolveAssemblyReference.cache
+D:\Tim\C#\專案\chatBoxHome\chatBoxHome\obj\Debug\chatBoxHome.Form1.resources
+D:\Tim\C#\專案\chatBoxHome\chatBoxHome\obj\Debug\chatBoxHome.Properties.Resources.resources
+D:\Tim\C#\專案\chatBoxHome\chatBoxHome\obj\Debug\chatBoxHome.csproj.GenerateResource.Cache
+D:\Tim\C#\專案\chatBoxHome\chatBoxHome\obj\Debug\chatBoxHome.csproj.CoreCompileInputs.cache
+D:\Tim\C#\專案\chatBoxHome\chatBoxHome\obj\Debug\chatBoxHome.exe
+D:\Tim\C#\專案\chatBoxHome\chatBoxHome\obj\Debug\chatBoxHome.pdb
+D:\Tim\C#\專案\chatBoxHome\chatBoxHome\bin\Debug\chatBoxHome.exe.manifest
+D:\Tim\C#\專案\chatBoxHome\chatBoxHome\bin\Debug\chatBoxHome.application
+D:\Tim\C#\專案\chatBoxHome\chatBoxHome\obj\Debug\chatBoxHome.exe.manifest
+D:\Tim\C#\專案\chatBoxHome\chatBoxHome\obj\Debug\chatBoxHome.application
